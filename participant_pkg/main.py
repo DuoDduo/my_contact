@@ -1,4 +1,4 @@
-import csv
+# import csv
 import file_ops
 from pathlib import Path
 
@@ -84,7 +84,6 @@ def main():
                 "Phone": phone,
                 "Track": track
             }
-
             try:
                 # Save participant details to CSV file
                 file_ops.save_participant(csv_file, participant)

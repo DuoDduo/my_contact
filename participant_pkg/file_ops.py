@@ -12,6 +12,9 @@ fieldnames = ["Name", "Age", "Phone", "Track"]
 
 # Function to save participant(s) into the CSV file
 def save_participant(csv_file, participant):
+    # Convert dictionary of participant to a list
+    if type(participant) == dict:
+     participant = [participant]
     # If the file already exists, append new data
     if csv_file.exists():
         with open(csv_file, "a", newline="", encoding="utf-8") as f:
@@ -23,7 +26,7 @@ def save_participant(csv_file, participant):
         with open(csv_file, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerow(participant)
+            writer.writerows(participant)
 
 print("Particicpant data written to CSV file!")
 
@@ -45,24 +48,5 @@ def load_participant(csv_file):
         print("No participants found yet.")
 
    
-   
-# Save participant(s)
-# def save_participant(csv_file, participants):
-#     # Convert a single participant to a list
-#     if type(participants) == dict:
-#         participants = [participants]
+      
 
-#     if csv_file.exists():
-#         # Append data if file exists
-#         with open(csv_file, "a", newline="", encoding="utf-8") as f:
-#             writer = csv.DictWriter(f, fieldnames=fieldnames)
-#             writer.writerows(participants)
-#     else:
-#         # Create file and write header + data
-#         print(f"File {csv_file} doesn't exist, creating it now!")
-#         with open(csv_file, "w", newline="", encoding="utf-8") as f:
-#             writer = csv.DictWriter(f, fieldnames=fieldnames)
-#             writer.writeheader()
-#             writer.writerows(participants)
-
-#     print("Participant(s) data written to CSV file!")
